@@ -29,5 +29,5 @@ class Product {
       Product.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'Product(id: $id, name: $name)';
+  String toString() => '$id - $name';
 }

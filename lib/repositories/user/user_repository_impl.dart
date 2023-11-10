@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:acf_cli/models/user.dart';
 import 'package:acf_cli/repositories/user/user_repository.dart';
 import 'package:http/http.dart' as http;
