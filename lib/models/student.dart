@@ -7,14 +7,14 @@ import 'package:acf_cli/models/course.dart';
 class Student {
   int? id;
   String name;
-  int age;
+  int? age;
   List<String> nameCourses;
   List<Course> courses;
   Address address;
   Student({
     this.id,
     required this.name,
-    required this.age,
+    this.age,
     required this.nameCourses,
     required this.courses,
     required this.address,
@@ -35,16 +35,16 @@ class Student {
     return Student(
       id: map['id'] != null ? map['id'] as int : null,
       name: map['name'] as String,
-      age: map['age'] as int,
+      age: map['age'] != null ? map['age'] as int : null,
       nameCourses: List<String>.from(
-        (map['nameCourses'] as List<String>),
+        (map['nameCourses'] as List<dynamic>),
       ),
       courses: List<Course>.from(
-        (map['courses'] as List<Map<String, dynamic>>).map<Course>(
+        (map['courses'] as List<dynamic>).map<Course>(
           (x) => Course.fromMap(x),
         ),
       ),
-      address: Address.fromMap(map['address'] as Map<String, dynamic>),
+      address: Address.fromMap(map['address']),
     );
   }
 
@@ -52,4 +52,13 @@ class Student {
 
   factory Student.fromJson(String source) =>
       Student.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  @override
+  String toString() {
+    return '$id - $name';
+  }
+
+  String toStringWithCourses() {
+    return '$id - $name | Cursos: ${courses.where((element) => element.isStudent).map((e) => e.name).toList()}';
+  }
 }

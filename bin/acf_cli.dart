@@ -1,5 +1,8 @@
-import 'package:acf_cli/acf_cli.dart' as acf_cli;
+import 'package:acf_cli/commands/students/students_command.dart';
+import 'package:args/command_runner.dart';
 
 void main(List<String> arguments) {
-  print('Hello world: ${acf_cli.calculate()}!');
+  CommandRunner('ADF CLI', 'ADF CLI')
+    ..addCommand(StudentsCommand())
+    ..run(arguments);
 }

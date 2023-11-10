@@ -5,7 +5,8 @@ import 'package:acf_cli/repositories/student/student_repository.dart';
 import 'package:http/http.dart' as http;
 
 class StudentRepositoryImpl implements StudentRepository {
-  static Uri url = Uri.parse('http://localhost:8080/students');
+  static String urlStr = 'http://localhost:8080/students';
+  static Uri url = Uri.parse(urlStr);
 
   @override
   Future<List<Student>> findAll() async {
@@ -14,14 +15,15 @@ class StudentRepositoryImpl implements StudentRepository {
     if (response.statusCode != 200) {
       throw Exception();
     } else {
-      List<Map<String, dynamic>> data = jsonDecode(response.body);
-      return data.map(Student.fromMap).toList();
+      final data = jsonDecode(response.body) as List;
+      return data.map((e) => Student.fromMap(e)).toList();
     }
   }
 
   @override
   Future<Student> findById(int id) async {
-    final result = await http.get(url);
+    Uri uri = Uri.parse('$urlStr/$id');
+    final result = await http.get(uri);
     if (result.statusCode != 200) {
       throw Exception();
     } else if (result.body == '[]') {
@@ -32,20 +34,39 @@ class StudentRepositoryImpl implements StudentRepository {
   }
 
   @override
-  Future<void> insert(Student obj) {
-    // TODO: implement insert
-    throw UnimplementedError();
+  Future<void> insert(Student obj) async {
+    final response = await http.post(
+      url,
+      body: obj.toJson(),
+      headers: {'content-type': 'application/json'},
+    );
+
+    if (response.statusCode != 201) {
+      throw Exception();
+    }
   }
 
   @override
-  Future<void> update(Student obj) {
-    // TODO: implement update
-    throw UnimplementedError();
+  Future<void> update(Student obj) async {
+    Uri uri = Uri.parse('$urlStr/${obj.id}');
+    final response = await http.put(
+      uri,
+      body: obj.toJson(),
+      headers: {'content-type': 'application/json'},
+    );
+
+    if (response.statusCode != 200) {
+      throw Exception();
+    }
   }
 
   @override
-  Future<void> deleteById(int id) {
-    // TODO: implement deleteById
-    throw UnimplementedError();
+  Future<void> deleteById(int id) async {
+    Uri uri = Uri.parse('$urlStr/$id');
+    final response = await http.delete(uri);
+
+    if (response.statusCode != 200) {
+      throw Exception();
+    }
   }
 }

@@ -6,7 +6,7 @@ import 'package:acf_cli/models/phone.dart';
 
 class Address {
   String street;
-  String number;
+  int number;
   String zipCode;
   City city;
   Phone phone;
@@ -32,7 +32,7 @@ class Address {
   factory Address.fromMap(Map<String, dynamic> map) {
     return Address(
       street: map['street'] as String,
-      number: map['number'] as String,
+      number: map['number'] as int,
       zipCode: map['zipCode'] as String,
       city: City.fromMap(map['city'] as Map<String, dynamic>),
       phone: Phone.fromMap(map['phone'] as Map<String, dynamic>),
