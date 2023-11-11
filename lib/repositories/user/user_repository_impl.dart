@@ -41,9 +41,15 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<void> insert(User user) {
-    // TODO: implement insert
-    throw UnimplementedError();
+  Future<void> insert(User user) async {
+    final response = await http.post(
+      uri,
+      body: user.toJson(),
+      headers: {'Content-Type': 'application/json'},
+    );
+    if (response.statusCode != 200) {
+      throw Exception(Msgs.msgNoConnection);
+    }
   }
 
   @override
