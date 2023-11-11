@@ -53,8 +53,15 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<void> update(User user) {
-    // TODO: implement update
-    throw UnimplementedError();
+  Future<void> update(User user) async {
+    Uri uri = Uri.parse('$urlStr/${user.id}');
+    final response = await http.put(
+      uri,
+      body: user.toJson(),
+      headers: {'Content-Type': 'application/json'},
+    );
+    if (response.statusCode != 200) {
+      throw Exception(Msgs.msgNoConnection);
+    }
   }
 }
