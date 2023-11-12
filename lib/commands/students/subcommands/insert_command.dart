@@ -56,7 +56,7 @@ class InsertCommand extends Command {
         ),
       );
 
-      repository.insert(studentModel);
+      await repository.insert(studentModel);
 
       print('--------------------------------');
       print('Alunos adicionados com sucesso!');
