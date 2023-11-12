@@ -41,7 +41,7 @@ class StudentRepositoryImpl implements StudentRepository {
       headers: {'content-type': 'application/json'},
     );
 
-    if (response.statusCode != 201) {
+    if (response.statusCode != 200) {
       throw Exception();
     }
   }

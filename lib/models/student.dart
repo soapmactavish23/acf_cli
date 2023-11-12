@@ -59,6 +59,6 @@ class Student {
   }
 
   String toStringWithCourses() {
-    return '$id - $name | Cursos: ${courses.where((element) => element.isStudent).map((e) => e.name).toList()}';
+    return '$id - $name | Cursos: ${courses.where((element) => element.isStudent!).map((e) => e.name).toList()}';
   }
 }

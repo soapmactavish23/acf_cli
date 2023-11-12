@@ -1,5 +1,5 @@
-import 'package:acf_cli/models/product.dart';
+import 'package:acf_cli/models/course.dart';
 
 abstract class ProductRepository {
-  Future<Product> findByName(String name);
+  Future<Course> findByName(String name);
 }

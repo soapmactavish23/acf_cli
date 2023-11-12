@@ -4,7 +4,7 @@ import 'dart:convert';
 class Course {
   int? id;
   String name;
-  bool isStudent;
+  bool? isStudent;
   Course({
     this.id,
     required this.name,
@@ -23,7 +23,7 @@ class Course {
     return Course(
       id: map['id'] != null ? map['id'] as int : null,
       name: map['name'] as String,
-      isStudent: map['isStudent'] as bool,
+      isStudent: map['isStudent'] != null ? map['isStudent'] as bool : null,
     );
   }
 
