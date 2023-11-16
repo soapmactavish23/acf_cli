@@ -1,12 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:async';
 
+import 'package:acf_cli/repositories/student/student_dio_repository.dart';
 import 'package:args/command_runner.dart';
 
-import 'package:acf_cli/repositories/student/student_repository_impl.dart';
-
 class FindByIdCommand extends Command {
-  final StudentRepositoryImpl repository;
+  final StudentDioRepository repository;
   FindByIdCommand({
     required this.repository,
   }) {
