@@ -2,12 +2,11 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:acf_cli/repositories/student/student_dio_repository.dart';
 import 'package:args/command_runner.dart';
 
-import 'package:acf_cli/repositories/student/student_repository_impl.dart';
-
 class DeleteCommand extends Command {
-  StudentRepositoryImpl repository;
+  StudentDioRepository repository;
   @override
   String get description => 'Delete By Id';
 

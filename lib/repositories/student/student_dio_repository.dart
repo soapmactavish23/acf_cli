@@ -29,4 +29,37 @@ class StudentDioRepository {
       throw Exception();
     }
   }
+
+  Future<void> insert(Student obj) async {
+    try {
+      Dio().post(
+        url,
+        data: obj.toMap(),
+      );
+    } on DioException catch (e) {
+      print(e);
+      throw Exception();
+    }
+  }
+
+  Future<void> update(Student obj) async {
+    try {
+      Dio().put(
+        '$url/${obj.id}',
+        data: obj.toMap(),
+      );
+    } on DioException catch (e) {
+      print(e);
+      throw Exception();
+    }
+  }
+
+  Future<void> deleteById(int id) async {
+    try {
+      Dio().delete('$url/$id');
+    } on DioException catch (e) {
+      print(e);
+      throw Exception();
+    }
+  }
 }

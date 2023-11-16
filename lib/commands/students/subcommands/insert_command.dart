@@ -6,11 +6,11 @@ import 'package:acf_cli/models/city.dart';
 import 'package:acf_cli/models/phone.dart';
 import 'package:acf_cli/models/student.dart';
 import 'package:acf_cli/repositories/product/product_repository_impl.dart';
-import 'package:acf_cli/repositories/student/student_repository_impl.dart';
+import 'package:acf_cli/repositories/student/student_dio_repository.dart';
 import 'package:args/command_runner.dart';
 
 class InsertCommand extends Command {
-  final StudentRepositoryImpl repository;
+  final StudentDioRepository repository;
   final productRepository = ProductRepositoryImpl();
 
   @override
